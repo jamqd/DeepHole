@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Heatmaps</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        position: absolute;
+        top: 10px;
+        left: 25%;
+        z-index: 5;
+        background-color: #fff;
+        padding: 5px;
+        border: 1px solid #999;
+        text-align: center;
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        left: 25%;
+        padding: 5px;
+        position: absolute;
+        top: 10px;
+        z-index: 5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="floating-panel">
+      <button onclick="changeOpacity()">Toggle heatmap</button>
+    </div>
+    <div id="map"></div>
+    <script>
+
+      // This example requires the Visualization library. Include the libraries=visualization
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+      var database = firebase.database();
+      var map, heatmap;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 19,
+          center: {lat: 34.064982, lng: -118.445467},
+          mapTypeId: 'satellite'
+        });
+
+        heatmap = new google.maps.visualization.HeatmapLayer({
+          data: getPoints(),
+          map: map
+        });
+
+        heatmap.set('radius', 25);
+      }
+
+      function changeOpacity() {
+        heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+      }
+
+
+      function getPoints() {
+        var points = [];
+        /*var query = firebase.database().ref("coordinates").orderByKey();
+        query.once("value")
+          .then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+      // key will be "ada" the first time and "alan" the second time
+              var key = childSnapshot.key;
+      // childData will be the actual contents of the child
+              var childData = childSnapshot.val();
+              points.push(new google.maps.LatLng(0.0, 0.03));
+          });
+        });*/
+        return [new google.maps.LatLng(34.0648, -118.4455), new google.maps.LatLng(34.0649, -118.4454)];
+      }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnF7B-ArEJ6mIJeFzFY8GCNrZGhpVZ4ZE&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+  
+<script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD7vbX_dhoVAHODMIDBGwT5-pjCqMhvV6A",
+    authDomain: "deephole-fed23.firebaseapp.com",
+    databaseURL: "https://deephole-fed23.firebaseio.com",
+    projectId: "deephole-fed23",
+    storageBucket: "deephole-fed23.appspot.com",
+    messagingSenderId: "961452994389"
+  };
+  firebase.initializeApp(config);
+</script>
+</html>
