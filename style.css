@@ -1,0 +1,61 @@
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+  width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#toggle-heat {
+  z-index: 5;
+  padding: 5px;
+  text-align: center;
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+}
+
+#full-data {
+  z-index: 20;
+  padding: 5px;
+  text-align: center;
+  bottom: 0px;
+  right: 75vw;
+  position: fixed;
+}
+
+/* #full-data-btn {
+  position: fixed;
+} */
+
+
+
+
+#data-column{
+  border: 4px;
+  overflow-y: scroll;
+  height: 100vh;
+  position: relative;
+}
+#map-column {
+  border: 4px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+h2 {
+  text-align: center;
+}
+
+a {
+  color:white;
+}
+
+#table-link:hover{
+    color: white;
+}
