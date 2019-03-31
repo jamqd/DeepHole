@@ -40,3 +40,23 @@ function getPoints() {
   return points;
   //return [new google.maps.LatLng(34.0648, -118.4455), new google.maps.LatLng(34.0649, -118.4454)];
 }
+
+// Get recent reports into the table.
+$(function() {
+    const itemsRef = database.ref("coordinates");
+    itemsRef.on('value', (snapshot) => {
+        var reports = [];
+        snapshot.forEach((child) => {
+            reports.push(child.val());
+        });
+        if (reports.length > 10) {
+            reports = reports.splice(-10);
+        }
+        reports.forEach((report) => {
+            $("#table").append(`<li class="list-group-item"> \
+                                    <img src=${report.imgURL} height="80" width="80" /> \
+                                    <p>${report.lat}, ${report.lng}</p> \
+                                </li>`);
+        });
+    });
+});
