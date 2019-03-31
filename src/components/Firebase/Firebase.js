@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+import firebase from 'firebase';
 import 'firebase/database';
 
 const config = {
@@ -10,11 +10,6 @@ const config = {
     messagingSenderId: "961452994389"
 };
 
-class Firebase {
-  constructor() {
-    app.initializeApp(config);
-    this.db = app.database();
-  }
-}
+firebase.initializeApp(config);
 
-export default Firebase;
+export default firebase;
