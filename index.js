@@ -73,7 +73,7 @@ $(function() {
                 content += "</td>";
                 content += '</tr>';
             });
-            $('#reports').append(content);
+            $("#reports").append(content);
         }
     });
 });
