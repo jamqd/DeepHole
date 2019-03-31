@@ -43,20 +43,37 @@ function getPoints() {
 
 // Get recent reports into the table.
 $(function() {
-    const itemsRef = database.ref("coordinates");
-    itemsRef.on('value', (snapshot) => {
-        var reports = [];
-        snapshot.forEach((child) => {
-            reports.push(child.val());
-        });
-        if (reports.length > 10) {
-            reports = reports.splice(-10);
+    var database = firebase.database();
+    database.ref('coordinates').once('value', function(snapshot){
+        if(snapshot.exists()){
+            var content = '';
+            snapshot.forEach(function(data){
+                var val = data.val();
+                content +='<tr>';
+                content +='<tr>';
+                content += "<td witdh='50%'>"
+                content +="<img class='report-img' src='" + val.imgURL + "' alt='img'>"
+                content += "</td>";
+                content += "<td>";
+                content += "<table class='table-borderless'>"
+                content +='</tr>';
+                content +"<tr>";
+                content += "<th scope='row'>Date</th>"
+                content += "<td>" + val.date + "</td>"
+                content += "</tr>"
+                content +"<tr>";
+                content += "<th scope='row'>Time</th>"
+                content += "<td>" + val.time + "</td>"
+                content += "</tr>"
+                content +"<tr>";
+                content += "<th scope='row'>Location</th>"
+                content += "<td>(" + val.lng + ", " + val.lat + ")</td>"
+                content += "</tr>"
+                content += "</table>"
+                content += "</td>";
+                content += '</tr>';
+            });
+            $('#reports').append(content);
         }
-        reports.forEach((report) => {
-            $("#table").append(`<li class="list-group-item"> \
-                                    <img src=${report.imgURL} height="80" width="80" /> \
-                                    <p>${report.lat}, ${report.lng}</p> \
-                                </li>`);
-        });
     });
 });

@@ -32,9 +32,6 @@ html, body {
   position: fixed;
 } */
 
-
-
-
 #data-column{
   border: 4px;
   overflow-y: scroll;
@@ -58,4 +55,12 @@ a {
 
 #table-link:hover{
     color: white;
+}
+
+.report-img {
+  /* display: block;
+  margin-left: auto;
+  margin-right: auto; */
+  width: 100%;
+  height: auto;
 }
