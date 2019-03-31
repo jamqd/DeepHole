@@ -38,28 +38,31 @@
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
                 <th scope="col">Manually Reported</th>
+                <th scope="col">Image</th>
               </tr>
         </thead>
 
         <tbody>
             <tr>
-                <th scope="row">2/13/14</th>
+                <td>2/13/14</td>
                 <td>1:23 PM</td>
                 <td>120.021</td>
                 <td>130.034</td>
                 <td>bob@apothole.com</td>
                 <td>555-645-3456</td>
                 <td>Yes</td>
+                <td><a href="https://google.com">Image</a></td>
             </tr>
 
             <tr>
-                <th scope="row">2/13/14</th>
+                <td>2/13/14</td>
                 <td>10:50 PM</td>
                 <td>245.768</td>
                 <td>355.523</td>
                 <td>mary@anotherpothole.com</td>
                 <td>555-768-9054</td>
                 <td>No</td>
+                <td><a href="https://google.com">Image</a></td>
             </tr>
         </tbody>
     </table>
@@ -81,8 +84,27 @@
     firebase.initializeApp(config);
     </script>
 
-    <script typ="javascript">
-    
+    <script>
+        var database = firebase.database();
+        database.ref('coordinates').once('value', function(snapshot){
+            if(snapshot.exists()){
+                var content = '';
+                snapshot.forEach(function(data){
+                    var val = data.val();
+                    content +='<tr>';
+                    content += '<td>' + val.date + '</td>';
+                    content += '<td>' + val.time + '</td>';
+                    content += '<td>' + val.lng + '</td>';
+                    content += '<td>' + val.lat + '</td>';
+                    content += '<td>' + val.email + '</td>';
+                    content += '<td>' + val.phone + '</td>';
+                    content += '<td>' + val.manual + '</td>';
+                    content += "<td><a href='" + val.imgURL + "'>Image</a></td>";
+                    content += '</tr>';
+                });
+                $('#reports').append(content);
+            }
+        });
     
     
     </script>
