@@ -54,9 +54,14 @@
         padding: 5px;
         text-align: center;
         bottom: 0px;
-        right: 5px;
-        position: relative;
+        right: 75vw;
+        position: fixed;
       }
+
+      /* #full-data-btn {
+        position: fixed;
+      } */
+
     
 
 
@@ -64,6 +69,7 @@
         border: 4px;
         overflow-y: scroll;
         height: 100vh;
+        position: relative;
       }
       #map-column {
         border: 4px;
@@ -74,6 +80,10 @@
 
       h2 {
         text-align: center;
+      }
+
+      a {
+        color:white;
       }
 
     </style>
@@ -109,7 +119,7 @@
               </p>
 
               <div id="full-data">
-                  <button type="button" class="btn btn-secondary">More Details</button>
+                  <button id="full-data-btn" type="button" class="btn btn-secondary"> <a href="table.html">More Details</a></button>
               </div>
         </div>
 
