@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Heatmaps</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -27,70 +28,6 @@
       };
       firebase.initializeApp(config);
     </script>
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-        width: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #toggle-heat {
-        z-index: 5;
-        padding: 5px;
-        text-align: center;
-        bottom: 0px;
-        left: 0px;
-        position: absolute;
-      }
-
-      #full-data {
-        z-index: 20;
-        padding: 5px;
-        text-align: center;
-        bottom: 0px;
-        right: 75vw;
-        position: fixed;
-      }
-
-      /* #full-data-btn {
-        position: fixed;
-      } */
-
-    
-
-
-      #data-column{
-        border: 4px;
-        overflow-y: scroll;
-        height: 100vh;
-        position: relative;
-      }
-      #map-column {
-        border: 4px;
-        height: 100vh;
-        width: 100vw;
-        overflow: hidden;
-      }
-
-      h2 {
-        text-align: center;
-      }
-
-      a {
-        color:white;
-      }
-
-      #table-link:hover{
-          color: white;
-      }
-
-    </style>
   </head>
 
   <body>
@@ -133,58 +70,8 @@
               <button type="button" class="btn btn-light" onclick="changeOpacity()">Toggle Heatmap</button>
           </div>
         </div>
-        
       </div>
     </div>
-
-    <script>
-        // This example requires the Visualization library. Include the libraries=visualization
-        // parameter when you first load the API. For example:
-        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
-        var database = firebase.database();
-        var map, heatmap;
-        function initMap() {
-          map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 19,
-            center: {lat: 34.064982, lng: -118.445467},
-            mapTypeId: 'satellite'
-          });
-          heatmap = new google.maps.visualization.HeatmapLayer({
-            data: getPoints(),
-            map: map
-          });
-          heatmap.set('radius', 25);
-        }
-        function changeOpacity() {
-          heatmap.set('opacity', heatmap.get('opacity') ? null : 0.1);
-        }
-        function getPoints() {
-          var points = [];
-          /*var query = firebase.database().ref("coordinates").orderByKey();
-          query.once("value")
-            .then(function(snapshot) {
-              snapshot.forEach(function(childSnapshot) {
-        // key will be "ada" the first time and "alan" the second time
-                var key = childSnapshot.key;
-        // childData will be the actual contents of the child
-                var childData = childSnapshot.val();
-                points.push(new google.maps.LatLng(0.0, 0.03));
-            });
-          });*/
-          database.ref('coordinates').on('value', (snapshot) => {
-            snapshot.forEach((child) => {
-                console.log("YEAHHH");
-                var temp = [];
-                child.forEach((node) => {
-                    console.log(node.val());
-                    temp.push(node.val());
-                })
-                points.push(new google.maps.LatLng(temp[0], temp[1]));
-              });
-          })
-          return points;
-          //return [new google.maps.LatLng(34.0648, -118.4455), new google.maps.LatLng(34.0649, -118.4454)];
-      }
-      </script>
+    <script src="./index.js"></script>
   </body>
 </html>
