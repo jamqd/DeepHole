@@ -1,0 +1,93 @@
+<html>
+
+<head>
+
+    <title>Reported Infrastructure Damage</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+    
+    </style>
+
+</head>
+
+<body>
+
+    <div id="header" class="container-fluid">
+
+            <h1>Reported Infrastructure Damage</h1>
+
+    </div>
+
+    <div id="table" class="container-fluid"></div>
+
+    <table id='reports' class="table table-hover">
+        <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Longitude</th>
+                <th scope="col">Latitude</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Manually Reported</th>
+              </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row">2/13/14</th>
+                <td>1:23 PM</td>
+                <td>120.021</td>
+                <td>130.034</td>
+                <td>bob@apothole.com</td>
+                <td>555-645-3456</td>
+                <td>Yes</td>
+            </tr>
+
+            <tr>
+                <th scope="row">2/13/14</th>
+                <td>10:50 PM</td>
+                <td>245.768</td>
+                <td>355.523</td>
+                <td>mary@anotherpothole.com</td>
+                <td>555-768-9054</td>
+                <td>No</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyD7vbX_dhoVAHODMIDBGwT5-pjCqMhvV6A",
+        authDomain: "deephole-fed23.firebaseapp.com",
+        databaseURL: "https://deephole-fed23.firebaseio.com",
+        projectId: "deephole-fed23",
+        storageBucket: "deephole-fed23.appspot.com",
+        messagingSenderId: "961452994389"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+    <script typ="javascript">
+    
+    
+    
+    </script>
+
+    
+</body>
+
+</html>
